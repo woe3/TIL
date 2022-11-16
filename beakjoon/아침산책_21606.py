@@ -9,8 +9,9 @@ for _ in range(n-1):
     a, b = map(int, sys.stdin.readline().split())
     graph[a].append(b)
     graph[b].append(a)
-
+# 실내, 실외를 구분하는 리스트
 door = [0] + [int(i) for i in in_and_out_door]
+# 경로를 찾을 때마다 추가
 count = 0
 def dfs(v, before = None):
     global count

@@ -20,6 +20,7 @@ def bfs(path, repeat, reach):
     global answer
     for i in range(repeat):
         now = queue.popleft()
+        
         four_ways = []
         # down
         four_ways.append([now[0]+1, now[1]])
@@ -29,6 +30,7 @@ def bfs(path, repeat, reach):
         four_ways.append([now[0], now[1]-1])
         # right
         four_ways.append([now[0], now[1]+1])
+
         for i in four_ways:
             if path[i[0]][i[1]] == 1:
                 if i == reach:

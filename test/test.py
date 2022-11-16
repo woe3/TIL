@@ -1,3 +1,5 @@
-a = 1
-if a:
-    print("NO")
+from collections import deque
+
+v = [1,2]
+que = deque(v)
+print(que.popleft())
