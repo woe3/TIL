@@ -6,13 +6,37 @@ for i in range(m):
     a, b = map(int, sys.stdin.readline().split())
     heavy[a].append(b)
     light[b].append(a)
-count = 0
-for i in heavy:
-    if len(i) > 1:
-        count += 1
 
-for i in light:
-    if len(i) > 1:
-        count += 1
 
-print(count)
+def dfs(graph, v):
+    global count
+    visited[v] = True
+    for i in graph[v]:
+        if not visited[i]:
+            count += 1
+            dfs(graph, i)
+
+answer = 0
+
+for i in range(1, n+1):
+    count = 0
+    visited = [False] * (n+1)
+    dfs(light, i)
+    print(i)
+    print(count)
+    print('----------')
+    if count > n//2:
+        answer += 1
+
+
+for i in range(1, n+1):
+    count = 0
+    visited = [False] * (n+1)
+    dfs(heavy, i)
+    print(i)
+    print(count)
+    print('----------')
+    if count > n//2:
+        answer += 1
+
+print(answer)
