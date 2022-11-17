@@ -62,3 +62,4 @@ while ice_count == 0:
     check_ice()
 
 print(year)
+# 통과못함(시간 초과)
