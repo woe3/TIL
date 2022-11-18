@@ -22,9 +22,6 @@ for i in range(1, n+1):
     count = 0
     visited = [False] * (n+1)
     dfs(light, i)
-    print(i)
-    print(count)
-    print('----------')
     if count > n//2:
         answer += 1
 
@@ -33,9 +30,6 @@ for i in range(1, n+1):
     count = 0
     visited = [False] * (n+1)
     dfs(heavy, i)
-    print(i)
-    print(count)
-    print('----------')
     if count > n//2:
         answer += 1
 
