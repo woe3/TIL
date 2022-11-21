@@ -11,6 +11,7 @@ for _ in range(t):
         for i in range(1, m+1):
             if i - coin >= 0:
                 dp[i] += dp[i-coin]
+        print(dp)
     print(dp[-1])
 
     # 가장 처음 동전으로 만들 수 있는 모든 금액에 해당되는 인덱스를 1로 갱신한다.
