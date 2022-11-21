@@ -23,8 +23,7 @@ for i in range(k):
             answer += 1
         multi_tap[-1] = [electronic[i], index]
     multi_tap.sort(key = lambda x : x[1])
-    print(multi_tap)
-    print(answer)
+
 
 
 print(answer)
