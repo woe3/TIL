@@ -18,6 +18,7 @@ for i in range(length_2):
             save = dp[j]
         elif sequence_1[j] == sequence_2[i]:
             dp[j] = save + 1
+    print(dp)
         
 
     
