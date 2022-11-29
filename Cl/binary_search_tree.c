@@ -11,14 +11,19 @@ typedef struct _Node {
 //노드 검색
 Node *search(Node *root, int x) {
     Node *p = root;
+    //노드가 NULL이 아니라면 계쏙해서 검색을 시도한다.
     while (p != NULL) {
+        //해당 값을 찾았다면 해당 노드를 리턴.
         if (p->key == x) return p;
+        //못 찾았다면 현재 검색 하고 있는 노드의 크기를 비교한다.
+        //검색 하고 싶은 값이 해당 노드보다 크다면 오른자식, 작다면 왼자식으로 이동.
         if (p->key < x){
             p = p->right;
         }else{
             p = p->left;
         }
     }
+    //끝까지 못찾았다면 검색 값이 존재하지 않기 때문에 NULL 리턴
     return NULL;
 };
 
@@ -26,8 +31,10 @@ Node *search(Node *root, int x) {
 Node *insert(Node *root, int x) {
     Node *p = root;
     Node *parent = NULL;
+    //부모 노드를 찾는다.
     while (p != NULL) {
         parent = p;
+        //이진탐색트리는 중복값이 존재 하면 안되기 때문에 중단.
         if (p->key == x) {
             printf("같은 키가 존재\n");
             return p;
@@ -38,10 +45,13 @@ Node *insert(Node *root, int x) {
             p = p->left;
         }
     }
+    //삽일 할 노드 선언
     Node *newNode = (Node*)malloc(sizeof(Node));
     newNode->key = x;
+    //삽입 노드는 항상 최 하단에 삽입되기 때문에 자식노드가 없다.
     newNode->left = newNode->right = NULL;
 
+    //삽입되는 위치가 부모노드의 오른쪽인지 왼쪽인지 확인
     if (parent != NULL) {
         if (parent->key < newNode->key) {
             parent->right = newNode;
@@ -51,6 +61,7 @@ Node *insert(Node *root, int x) {
     }
     return newNode;
 }
+
 //노드 삭제
 Node *delete(Node *root, int x) {
     Node *p = root;
