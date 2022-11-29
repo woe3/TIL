@@ -66,6 +66,7 @@ Node *insert(Node *root, int x) {
 Node *delete(Node *root, int x) {
     Node *p = root;
     Node *parent = NULL;
+    //삭제할 노드를 찾는다.
     while ((p != NULL) && (p->key == x)) {
         parent = p;
         if (p->key < x) {
