@@ -1,5 +1,2 @@
-a = "11"
-b = "11"
-
-if a == b:
-    print('ok')
+a = [ 1, 2]
+print(-a)
