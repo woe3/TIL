@@ -244,7 +244,6 @@ void *mm_realloc(void *ptr, size_t size)
     else{
         new_size = DSIZE * ((size + (DSIZE) + (DSIZE - 1)) / DSIZE);
     }
-    // (size/WSIZE % 2) ? (size/WSIZE + 1) * WSIZE : size/WSIZE * WSIZE;
     //새로 할당할 사이즈가 본래 사이즈보다 작거나 같을 때
     //즉시 반환
     copySize = GET_SIZE(HDRP(oldptr));
