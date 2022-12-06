@@ -251,7 +251,8 @@ void *mm_realloc(void *ptr, size_t size)
     void *oldptr = ptr;
     void *newptr;
     size_t copySize;
-    
+    size_t size_sum;
+
     // adjust block size to include overhead and aligment reqs.
     size_t new_size;
     if(size <= DSIZE)
@@ -263,10 +264,25 @@ void *mm_realloc(void *ptr, size_t size)
     //즉시 반환
     copySize = GET_SIZE(HDRP(oldptr));
     if (new_size <= copySize)
-        return oldptr;
-
+    {
+        if (copySize - new_size < 2*DSIZE)
+        {
+            PUT(HDRP(oldptr), PACK(copySize, 1));
+            PUT(FTRP(oldptr), PACK(copySize, 1));
+        }else{
+            PUT(HDRP(oldptr), PACK(new_size, 1));
+            PUT(FTRP(oldptr), PACK(new_size, 1));
+            oldptr = NEXT_BLKP(oldptr);
+            PUT(HDRP(oldptr), PACK(copySize - new_size, 0));
+            PUT(FTRP(oldptr), PACK(copySize - new_size, 0));
+            coalesce(oldptr);
+        }
+        
+        return ptr;
+    }
+    
     // 사이즈가 본래 사이즈 보다 크고, 다음 블럭이 가용 블럭 일 경우
-    size_t size_sum = GET_SIZE(HDRP(NEXT_BLKP(oldptr))) + GET_SIZE(HDRP(oldptr));
+    size_sum = GET_SIZE(HDRP(NEXT_BLKP(oldptr))) + GET_SIZE(HDRP(oldptr));
     if (!GET_ALLOC(HDRP(NEXT_BLKP(oldptr))) && size_sum >= new_size)
     {
         if (size_sum - new_size < 2*DSIZE)
@@ -290,15 +306,11 @@ void *mm_realloc(void *ptr, size_t size)
     newptr = mm_malloc(size);
     if (newptr == NULL)
       return NULL;
-    copySize = GET_SIZE(HDRP(oldptr));
-    if (size < copySize)
-      copySize = size;
     
     memcpy(newptr, oldptr, copySize);
     mm_free(oldptr);
     return newptr;
 }
-
 
 
 
