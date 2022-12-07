@@ -250,19 +250,6 @@ void *mm_realloc(void *ptr, size_t size)
     copySize = GET_SIZE(HDRP(oldptr));
     if (new_size <= copySize)
     {
-        if (copySize - new_size < 2*DSIZE)
-        {
-            PUT(HDRP(oldptr), PACK(copySize, 1));
-            PUT(FTRP(oldptr), PACK(copySize, 1));
-        }else{
-            PUT(HDRP(oldptr), PACK(new_size, 1));
-            PUT(FTRP(oldptr), PACK(new_size, 1));
-            oldptr = NEXT_BLKP(oldptr);
-            PUT(HDRP(oldptr), PACK(copySize - new_size, 0));
-            PUT(FTRP(oldptr), PACK(copySize - new_size, 0));
-            coalesce(oldptr);
-        }
-        
         return ptr;
     }
     
@@ -280,6 +267,7 @@ void *mm_realloc(void *ptr, size_t size)
             oldptr = NEXT_BLKP(oldptr);
             PUT(HDRP(oldptr), PACK(size_sum - new_size, 0));
             PUT(FTRP(oldptr), PACK(size_sum - new_size, 0));
+            coalesce(oldptr);
         }
         return ptr;
     }
