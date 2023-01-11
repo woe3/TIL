@@ -33,6 +33,3 @@ for i in range(n+k):
 
 
 print(answer)
-
-#질문
-#함수 리턴은 어떻게 받는가
