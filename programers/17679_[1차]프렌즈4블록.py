@@ -3,13 +3,13 @@ delete_block = []
 def square(l, board):
     global delete_block
     block = board[l[0]][l[1]]
-    if board[l[0]+1][l[1]] == block:
-        if board[l[0]][l[1]+1] == block:
-            if board[l[0]+1][l[1]+1] == block:
-                delete_block.append([l[0], l[1]])
-                delete_block.append([l[0]+1, l[1]])
-                delete_block.append([l[0], l[1]+1])
-                delete_block.append([l[0]+1, l[1]+1])
+    if (board[l[0]+1][l[1]] == block and 
+        board[l[0]][l[1]+1] == block and 
+        board[l[0]+1][l[1]+1] == block):
+        delete_block.append([l[0], l[1]])
+        delete_block.append([l[0]+1, l[1]])
+        delete_block.append([l[0], l[1]+1])
+        delete_block.append([l[0]+1, l[1]+1])
 
 
     return
@@ -50,3 +50,5 @@ def solution(m, n, board):
                             break
 
     return answer
+
+solution(6,6,["TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"])
