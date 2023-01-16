@@ -1,6 +1,6 @@
 const express = require('express') // 익스프레스 를 가져온다
 const app = express()
-const port = 5000
+const port = 3000
 
 
 

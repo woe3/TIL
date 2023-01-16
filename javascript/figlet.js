@@ -1,4 +1,4 @@
-var figlet = require('figlet');
+let figlet = require('figlet');
 
 figlet('Hello World!!', function(err, data) {
     if (err) {
