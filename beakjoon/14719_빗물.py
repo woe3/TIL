@@ -13,10 +13,12 @@ for height in range(h, 0, -1):
         
     if len(temp_list) > 1:
         for i in range(len(temp_list)-1):
-            for j in range(temp_list[i], temp_list[i+1]):
-                answer += height - blocks[j]        
-                visited[j] = 1
+            for j in range(temp_list[i]+1, temp_list[i+1]):
+                if not visited[j]:
+                    answer += height - blocks[j]        
+                    visited[j] = 1
     print(temp_list)
     print(answer)
+    print(visited)
 print(answer)
         
