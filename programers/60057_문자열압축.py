@@ -1,12 +1,8 @@
 from collections import deque
 
 def solution(s):
-    # 길이가 1인 경우 1 반환
-    if len(s) == 1:
-        return 1
-    
     # 정답의 최대 크기 설정
-    answer = 1000
+    answer = len(s)
     
     # 문자열을 하나씩 나누기
     s = list(s)
@@ -27,19 +23,17 @@ def solution(s):
         temp_answer = 0
         string_index = 0
         while string_index < len(string):
-            cnt = 1
             same = 1
 
-            while string_index + cnt < len(string):
-                if string[string_index] == string[string_index + cnt]:
+            while string_index + same < len(string):
+                if string[string_index] == string[string_index + same]:
                     same += 1
-                    cnt += 1
                 else:
                     break
             if same > 1:
                 temp_answer += len(str(same))
             temp_answer += len(string[string_index])
-            string_index += cnt
+            string_index += same
             
         if temp_answer < answer:
             answer = temp_answer
