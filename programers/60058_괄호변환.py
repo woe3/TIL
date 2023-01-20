@@ -1,20 +1,3 @@
-# 2. 문자열 w를 두 "균형잡힌 괄호 문자열" u, v로 분리합니다.
-# 단, u는 "균형잡힌 괄호 문자열"로 더 이상 분리할 수 없어야 하며, v는 빈 문자열이 될 수 있습니다.  
-def split_p(w):
-    cnt = 0
-    u = ''
-    v = ''
-    for i in range(len(w)):
-        if w[i] == "(":
-            u += "("
-            cnt += 1
-        else:
-            u += ")"
-            cnt -= 1
-        if cnt == 0:
-            v = w[i+1:]
-            return(u, v)
-        
 def determine_p(u):
     cnt = 0
     for bracket in u:
@@ -63,9 +46,4 @@ def recursive(v, u=''):
             
 def solution(p):
     answer = recursive(p)
-    
-    
-    
     return answer
-
-print(solution("()))((()"))
