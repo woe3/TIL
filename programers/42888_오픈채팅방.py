@@ -10,7 +10,7 @@ def solution(record):
             userLog[temp[1]] = temp[2]
         tempAnswer.append(temp)
     
-    # 변경된 닉네임으로 정답 만들기
+    # 변경된 닉네임으로 로그 리스트 만들기
     for i in tempAnswer:
         if i[0] == "Enter":
             answer.append(userLog[i[1]] + "님이 들어왔습니다.")
