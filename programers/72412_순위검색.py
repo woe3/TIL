@@ -1,6 +1,8 @@
 from itertools import product
 import bisect
 dictionaryOfQuerys = {}
+
+# 전체 경우의 수를 key:[]로 딕셔너리를 만든다.
 def querys(n = 0, term = ""):
     global dictionaryOfquery
     if n == 4:
@@ -12,11 +14,10 @@ def querys(n = 0, term = ""):
         ["junior", "senior", "-"],
         ["chicken", "pizza", "-"]
     ]
-    # if n > 0:
-    #     term += " and "
     for i in terms_list[n]:
         querys(n+1, term+i)
-        
+# 지원자가 해당되는 모든 key의 value인 리스트에 점수를 추가
+# ex) 'pythonfrontendseniorchicken': ['210', '150']       
 def info_input(info : list, n = 0):
     if n == 4:
         dictionaryOfQuerys["".join(info[:4])].append(int(info[4]))
@@ -27,15 +28,17 @@ def info_input(info : list, n = 0):
 def solution(info, query):
     answer = []
     global dictionaryOfQuerys
-    # 딕셔너리 만들기 지원자 정보를 key로 점수를 리스트 형태의 value로 만들어서 추가
-    # ex) 'pythonfrontendseniorchicken': ['210', '150']
+    
     querys()
     for i in info:
         temp = list(i.split())
         info_input(temp)
+        
+    # 모든 리스트를 정렬한다.
     for i in dictionaryOfQuerys:
         dictionaryOfQuerys[i].sort()
     
+    # query에 해당되는 value리스트에서 이분 탐색을 이용해서 해당 값의 인덱스를 찾는다.
     for i in query:
         temp = list(i.split())
         temp_q = []
@@ -44,6 +47,8 @@ def solution(info, query):
                 temp_q.append(j)
         query_key = "".join(temp_q[:4])
         score = int(temp_q[4])
+        # 인덱스 값은 들어 갈수 없는 점수 중 가장 큰 점수이기 때문에
+        # 전체 길이에서 인덱스를 빼준다.
         answer.append(len(dictionaryOfQuerys[query_key]) - 
                       bisect.bisect_left(dictionaryOfQuerys[query_key], score))
         
