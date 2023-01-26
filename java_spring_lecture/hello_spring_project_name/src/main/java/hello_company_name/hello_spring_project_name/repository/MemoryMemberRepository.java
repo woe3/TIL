@@ -4,7 +4,7 @@ import hello_company_name.hello_spring_project_name.domain.Member;
 
 import java.util.*;
 
-public class MemoeyMemberRepository implements MemberRepository {
+public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
