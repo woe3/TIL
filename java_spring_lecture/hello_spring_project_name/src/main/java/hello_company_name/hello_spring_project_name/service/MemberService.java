@@ -3,13 +3,19 @@ package hello_company_name.hello_spring_project_name.service;
 import hello_company_name.hello_spring_project_name.domain.Member;
 import hello_company_name.hello_spring_project_name.repository.MemberRepository;
 import hello_company_name.hello_spring_project_name.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService (MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
     /*
     회원가입
      */
