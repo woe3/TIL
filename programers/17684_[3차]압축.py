@@ -1,31 +1,25 @@
-from collections import deque
-
 def solution(msg):
     answer = []
     # 사전 생성
     dictionary = {}
-    # 문자 쪼개서 deque에 넣기
-    msg = deque(list(msg))
-
-    
-    while msg:
-        # 한 글자 빼기
-        letters = msg.popleft()
-        while msg:
-            # 한 글자씩 더하면서 사전에 있는지 확인
-            # 사전에 없을 때까지 더해가기
-            temp = msg.popleft()
-            letters += temp
-            # 없다면 마지막 글자를 빼고 압축
+    # 문자 쪼개기
+    msg = list(msg)
+    i = 0
+    while i < len(msg):
+        letters = msg[i]
+        for j in range(i+1, len(msg)):
+            letters += msg[j]
+            print(letters)
+            i = j
             if not letters in dictionary:
                 dictionary[letters] = len(dictionary) + 27
-                letters = letters[:len(letters)-1]
-                msg.appendleft(temp)
+                if len(letters) > 1:
+                    letters = letters[:len(letters)-1]
                 break
             
         
-        # 글자 수가 1개면 아스키 코드로 숫자 만들기
-        # 2개 이상이라면 사전에서 숫자 찾기
+        
+        # print(letters)
         if len(letters) == 1:
             answer.append(ord(letters)-64)
         else:
