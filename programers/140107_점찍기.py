@@ -18,4 +18,4 @@ def solution(k, d):
                 answer = answer + ((max_val - j)//k) + 1
                 break;
                 
-    return answer
+    return answer 
