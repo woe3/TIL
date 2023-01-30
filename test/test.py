@@ -1,3 +1,9 @@
-hi = (1,2,3,4)
+import sys
 
-print(hi)
+n, r = map(int, sys.stdin.readline().split())
+graph = [[] for _ in range(n+1)]
+for _ in range(n):
+    a, b, d = map(int, sys.stdin.readline().split())
+    graph[a].append([b, d])
+
+print(graph)
