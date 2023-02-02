@@ -1,5 +1,6 @@
 package woo.test.tp.controller;
 
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class PostController {
     @PostMapping(value = "/member")
     public String postMember(@RequestBody Map<String, Object> postData) {
         StringBuilder sb = new StringBuilder();
-
+        System.out.println();
         postData.entrySet().forEach(map -> {
             sb.append(map.getKey() + " : " + map.getValue() + "\n");
         });
