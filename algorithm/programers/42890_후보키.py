@@ -3,7 +3,7 @@ def solution(relation):
     answer = 0
     answer_set = set()
     case_index_list = []
-    # 후보키가 될 수 있는 모든 경우의 수 (1은 +-    )
+    # 후보키가 될 수 있는 모든 경우의 수 (1은 +-     )
     cases = list(product((0,1), repeat=len(relation[0])))[1:]
     
     # 경우의 수를 인덱스 형식으로 변환 후, 길이가 작은 순대로 정렬
@@ -16,6 +16,7 @@ def solution(relation):
     case_index_list.sort(key = len)
     
     # 이미 추가된 정답set을 통해 최소성 검증
+    # !추가: 차집합을 이용해서 공집합인지 아닌지만 확인하면 됨
     for l in range(len(cases)):
         case_temp = tuple(case_index_list[l])
         min = True
