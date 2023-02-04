@@ -11,15 +11,13 @@ for _ in range(t):
         graph[b] = a
 
     node_1, node_2 = map(int, sys.stdin.readline().split())
+
+    print(graph)
     while node_1:
-        if not node_1:
-            break
         parents.add(node_1)
         node_1 = graph[node_1]
 
     while node_2:
-        if not node_2:
-            break
         if node_2 in parents:
             answer.append(node_2)
             break
