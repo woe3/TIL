@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 페이지</title>
+</head>
+<body>
+<h1>회원가입 페이지</h1>
+<hr/>
+<form action="/joinProc" method="post">
+	<input type="text" name="userID" placeholder="UserID"/> <br/>
+	<input type="password" name="password" placeholder="Password"/> <br/>
+	<input type="email" name="email" placeholder="Email"/> <br/>
+	<input type="text" name="name" placeholder="name"/> <br/>
+	<input type="number" name="age" placeholder="age"/> <br/>
+	<select name="gender">
+		<option value="">성별 선택</option>
+		<option value="남">남</option>
+		<option value="여">여</option>
+	</select>
+	<button>회원가입</button>
+</form>
+</body>
+</html>
